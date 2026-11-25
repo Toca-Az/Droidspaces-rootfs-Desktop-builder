@@ -39,10 +39,10 @@ Anland Wayland 支持 Debian 13、Ubuntu 26、Fedora 43/44 和 Arch。Arch KDE �
 3. 在 Droidspaces 容器设置中开启硬件访问。
 4. 为容器启用特权模式，并开启 `nocaps`、`noseccomp`。
 5. 按设备策略配置 SELinux；可启用宽容模式，或只允许 Anland 显示服务访问所需的 socket。
-6. 在高级选项中添加绑定挂载：
+6. 在高级选项中添加绑定挂载（推荐目录挂载，避免 daemon 重启时单文件 socket 产生死挂载失效）：
 
    ```text
-   /data/local/tmp/display_daemon.sock -> /run/display.sock
+   /data/local/tmp -> /tmp/anland
    ```
 
 启动容器并以普通用户登录。KDE 可手动运行 `startplasma-wayland`；KDE Mobile 使用 `startplasmamobile`；GNOME 使用 `gnome-session --session=gnome`。

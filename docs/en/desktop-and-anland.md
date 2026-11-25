@@ -39,10 +39,10 @@ Prepare the Android device:
 3. Enable hardware access in the Droidspaces container settings.
 4. Use privileged mode and enable `nocaps` and `noseccomp`.
 5. Configure SELinux for the device: use permissive mode or allow the Anland display service to access the required socket.
-6. Add this bind mount in the advanced options:
+6. Add this bind mount in the advanced options (directory mount avoids dead sockets when daemon restarts):
 
    ```text
-   /data/local/tmp/display_daemon.sock -> /run/display.sock
+   /data/local/tmp -> /tmp/anland
    ```
 
 Start the container and log in as the normal user. For KDE run `startplasma-wayland`; KDE Mobile uses `startplasmamobile`; GNOME uses `gnome-session --session=gnome`.
